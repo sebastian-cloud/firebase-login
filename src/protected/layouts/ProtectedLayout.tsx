@@ -16,7 +16,7 @@ export const ProtectedLayout = ({ children }: Props) => {
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-                sx={{ backgroundColor: 'forBackground.main', padding: 4 }}
+                sx={{ padding: 4 }}
             >
                 { children }
             </Grid>

@@ -14,7 +14,7 @@ export const AuthLayout = ({ children, title }: Props) => {
             direction="column"
             alignItems="center"
             justifyContent="center"
-            sx={{ minHeight: '100vh', backgroundColor: 'forBackground.main', padding: 4 }}
+            sx={{ minHeight: '100vh', padding: 4 }}
         >
             <Paper
                 // item
