@@ -22,7 +22,7 @@ export const Register = () => {
 
     const signUp = ( values: RegisterBody, { setSubmitting }: FormikHelpers<RegisterBody> ) => {
         
-        dispatch( startRegisterUserWithEmailPassword( values ) )
+        dispatch( startRegisterUserWithEmailPassword({ ...values, email: values.email }) )
         setSubmitting( false )
     }
 
@@ -69,6 +69,8 @@ export const Register = () => {
                                 type="text"
                                 fullWidth
                                 name='displayName'
+                                autoComplete='off'
+                                autoCapitalize='words'
                                 onChange={ handleChange }
                                 onBlur={ handleBlur }
                                 value={ values.displayName }
@@ -82,6 +84,7 @@ export const Register = () => {
                                 type="text"
                                 fullWidth
                                 name='email'
+                                autoComplete='off'
                                 onChange={ handleChange }
                                 onBlur={ handleBlur }
                                 value={ values.email }

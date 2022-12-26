@@ -23,7 +23,7 @@ export const Login = () => {
 
     const signIn = ( values: LoginBody, { setSubmitting }: FormikHelpers<LoginBody> ) => {
         
-        dispatch( startLoginWithEmailPassword( values ) )
+        dispatch( startLoginWithEmailPassword( { ...values, email: values.email.trim() } ) )
         setSubmitting( false )
     }
 
@@ -68,6 +68,7 @@ export const Login = () => {
                                 type="text"
                                 fullWidth
                                 name='email'
+                                autoComplete='off'
                                 onChange={ handleChange }
                                 onBlur={ handleBlur }
                                 value={ values.email }
