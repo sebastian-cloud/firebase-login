@@ -18,5 +18,9 @@ export interface Task {
 }
 
 export interface NewTaskBody {
-    task: string
+    task:           string
+}
+
+export interface EditProfileBody {
+    displayName:    string
 }

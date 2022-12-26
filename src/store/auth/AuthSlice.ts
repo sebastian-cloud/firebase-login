@@ -62,10 +62,13 @@ export const authSlice = createSlice({
         state.photoURL = null;
         state.errorMessage = action.payload?.errorMessage;
     },
+    updateName: ( state, { payload }: PayloadAction<string> ) => {
+      state.displayName = payload
+    }
   },
 })
 
-export const { checkingCredentials, login, logout } = authSlice.actions
+export const { checkingCredentials, login, logout, updateName } = authSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 // export const selectCount = (state: RootState) => state.counter.value

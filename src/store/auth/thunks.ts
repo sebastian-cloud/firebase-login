@@ -1,8 +1,11 @@
-import { LoginBody, RegisterBody } from '../../firebase/firebase.interface'
-import { logoutFirebase, registerUserWithEmailPassword, signInWithEmailPassword, singInWithGoogle } from '../../firebase/providers'
-import { checkingCredentials, login, logout } from './AuthSlice'
+import { useSelector } from 'react-redux';
+import { LoginBody, RegisterBody, EditProfileBody } from '../../firebase/firebase.interface';
+import { logoutFirebase, registerUserWithEmailPassword, signInWithEmailPassword, singInWithGoogle, updateDisplayName } from '../../firebase/providers';
+import { checkingCredentials, login, logout, updateName } from './AuthSlice'
+import { RootState } from '../index';
 
 export const startRegisterUserWithEmailPassword = (params: RegisterBody) => {
+
     return async ( dispatch: any ) => {
 
         const result = await registerUserWithEmailPassword( params )
@@ -10,10 +13,8 @@ export const startRegisterUserWithEmailPassword = (params: RegisterBody) => {
 
         setTimeout(() => {
             
-            dispatch( checkingCredentials() );
-        }, 1000);
-
-        dispatch( login( result as any ) )
+            dispatch( login( result as any ) )
+        }, 4000);
     }
 }
 
@@ -54,5 +55,16 @@ export const startLogout = () => {
         await logoutFirebase()
 
         dispatch( logout( null ) )
+    }
+}
+
+export const startUpdateDisplayName = (displayName: string) => {
+    return async ( dispatch: any ) => {
+
+        const resp = await updateDisplayName( displayName );
+
+        if( !resp.ok ) return;
+        
+        dispatch( updateName( displayName ) )
     }
 }

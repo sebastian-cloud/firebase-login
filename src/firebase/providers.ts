@@ -5,6 +5,10 @@ import { LoginBody, RegisterBody, Task } from "./firebase.interface";
 
 const googleProvider = new GoogleAuthProvider();
 
+/**
+ * User methods
+ */
+
 export const singInWithGoogle = async() => {
 
     try {
@@ -77,6 +81,23 @@ export const signInWithEmailPassword = async({ email, password }: LoginBody) => 
 export const logoutFirebase = async () => {
     return await FirebaseAuth.signOut()
 }
+
+export const updateDisplayName = async ( displayName: string ) => {
+    try {
+        await updateProfile( FirebaseAuth.currentUser!, { displayName })
+
+        return {
+            ok: true,
+            displayName
+        }
+    } catch(error: any) {
+        return { ok: false, errorMessage: error.message }
+    }
+}
+
+/**
+ * Task methods
+ */
 
 export const getTasks = async ( uid: string ): Promise<Task[]> => {
 

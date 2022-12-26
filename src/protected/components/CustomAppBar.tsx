@@ -1,5 +1,5 @@
-import { AppBar, Avatar, ClassNameMap, createStyles, IconButton, Menu, MenuItem, Theme, Toolbar, Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles'
+import { AppBar, Avatar, ClassNameMap, IconButton, Menu, MenuItem, Theme, Toolbar, Typography } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles'
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -56,7 +56,11 @@ export default function CustomAppBar() {
               className={ classes.homeButton }
               onClick={ () => navigate('/') }
             >
-              App
+              {
+                ( status === 'authenticated')
+                ? displayName
+                : 'App'
+              }
             </Typography>
             <div className={classes.space} ></div>
             {
